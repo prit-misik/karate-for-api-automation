@@ -1,0 +1,5 @@
+{
+  "login_type": "#(login_type)",
+  "email": "#(email)",
+  "password": "#(password)"
+}

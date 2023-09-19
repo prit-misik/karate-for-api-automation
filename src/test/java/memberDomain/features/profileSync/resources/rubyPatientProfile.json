@@ -1,0 +1,17 @@
+{
+  "patient": {
+    "date_of_birth": "01-01-1969",
+    "email": "#(patient_email)",
+    "first_name": "core",
+    "last_name": "Student",
+    "gender": "male",
+    "language_for_notifications": "en",
+    "phone_country_code": "#(phone_code)",
+    "phone_number": "7575757676",
+    "password": "Test@1234",
+    "address_state_code": "#(testData.address_state_code)",
+    "redemptions_attributes": [
+      { "code": "#(country_code)", "redemption_type": "hybrid" }
+    ]
+  }
+}

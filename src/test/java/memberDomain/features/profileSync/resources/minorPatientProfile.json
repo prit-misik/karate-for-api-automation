@@ -1,0 +1,14 @@
+
+{
+  "account": {
+    "first_name": "small",
+    "last_name": "kid",
+    "email": "#(minor)",
+    "date_of_birth": "2022-01-01",
+    "gender": "male",
+    "address_post_code": "#(testData.address_post_code)",
+    "redemptions_attributes": [
+      { "code": "#(country_code)", "redemption_type": "hybrid" }
+    ]
+  }
+}

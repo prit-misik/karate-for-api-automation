@@ -1,0 +1,29 @@
+{
+  "consultationId": "#(appointment_id)",
+  "drugs": [
+    {
+      "drugId": "#(drugID)",
+      "drugName": "#(drugName)",
+      "dosage": "BD",
+      "packagingSize": "",
+      "duration": "3",
+      "quantity": 6,
+      "refills": 0,
+      "directions": "Twice a day for 3 days",
+      "notes": "",
+      "strength": "500mg",
+      "pharmaceuticalForm": "capsule",
+      "indications": [
+        {
+          "iri": "https://bbl.health/FyylqfH5_S",
+          "name": "Naegleriasis (Infection By Naegleria)"
+        }
+      ],
+      "reviewDate": null,
+      "repeats": null,
+      "repeatableDrug": false,
+      "repeatable": false
+    }
+  ],
+  "patientId": "#(patient_uuid)"
+}

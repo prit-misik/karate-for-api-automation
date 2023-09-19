@@ -1,0 +1,14 @@
+{
+  "allowed_mediums": [
+    "physical",
+    "video",
+    "voice"
+  ],
+  "earliest_booking_date": "#(first_availability)",
+  "intimate": false,
+  "member_uuid": "#(patient_uuid)",
+  "notes_for_member": "API test invite",
+  "service_type_uuid": "#(serviceTypeUuid)",
+  "duration_minutes": 10,
+  "preferred_medium": "video"
+}

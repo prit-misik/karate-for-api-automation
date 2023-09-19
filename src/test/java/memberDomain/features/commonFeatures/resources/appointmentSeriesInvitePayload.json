@@ -1,0 +1,15 @@
+{
+  "member_uuid": "#(patient_uuid)",
+  "service_type_uuid": "#(service_type_uuid)",
+  "consultation_type": "video",
+  "earliest_booking_date": "#(earliest_booking_date)",
+  "notes_for_member": "From Karate Test",
+  "intimate": false,
+  "recurrence": {
+    "count": 2
+  },
+  "preferred_date_time": "#(first_availability)",
+  "timezone_id": "America/New_York",
+  "appointment_invite_features": ["create_invite_with_bookings"],
+  "consultant_uuid": "#(therapist_uuid)"
+}

@@ -1,0 +1,20 @@
+{
+  "clinician_access_token": "#(adminAccessToken)",
+  "consultant_id" : "#(consultant_id)",
+  "startMinutes": "#(startMin)",
+  "startHour": "#(startHour)",
+  "dateToday": "#(dateToday)",
+  "month": "#(month)",
+  "year": "#(year)",
+  "endMinutes": "59",
+  "toDate": "#(dateToday)",
+  "endHour": "#(endHour)",
+  "physical_bookable": "0",
+  "digital_bookable": "1",
+  "training" : "0",
+  "recurring": "0",
+  "slot_size": "10",
+  "category_id": "2",
+  "admin": "0",
+  "timezone": "Europe/London"
+}

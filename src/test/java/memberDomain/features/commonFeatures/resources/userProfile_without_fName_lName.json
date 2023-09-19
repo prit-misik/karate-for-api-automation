@@ -1,0 +1,19 @@
+{
+  "id": "3d12d476-b047-4163-8b1a-d3a6bdfd471c",
+  "gender": "male",
+  "sex_at_birth": "male",
+  "date_of_birth": "1990-01-31",
+  "email": "zpu.test.without.fname.lname@hotmail.com",
+  "address_first_line": "Sloane Avenue 60.",
+  "address_second_line": "Magic/Street 12-A",
+  "address_third_line": "South-Kensington",
+  "address_fourth_line": "South-Kensington 4th Line",
+  "address_fifth_line": "South-Kensington 5th Line",
+  "post_code": "SW3 3DD",
+  "state": "West midlands",
+  "phone_country_code": "+44",
+  "phone_number": "7979797979",
+  "avatar_image_path": "https://images.com/joana22.jpg",
+  "previous_names": "Will Peter, William Petter",
+  "national_id": 1234567891234567
+}

@@ -1,0 +1,8 @@
+{
+  "user_aliases": [
+    {
+      "alias_label": "email",
+      "alias_name": "#(patient_email)"
+    }
+  ]
+}

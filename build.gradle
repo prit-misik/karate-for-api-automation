@@ -1,0 +1,170 @@
+buildscript {
+    ext {
+        scalaVersion = '2.13.3'
+        karateVersion = '1.0.1'
+        gatlingVersion = '3.4.0'
+        masterThoughtVersion = '3.8.0'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://dl.bintray.com/epam/reportportal" }
+}
+
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'jacoco'
+apply plugin: 'application'
+
+mainClassName = "org.company.OrderApplication"
+group = group
+version = version
+
+sourceCompatibility = 8
+targetCompatibility = 8
+
+jar {
+    baseName = 'demo'
+    version = '1.0'
+}
+
+configurations {
+    gatling
+    antJUnit
+}
+
+dependencies {
+    implementation("com.epam.reportportal:commons-model:5.0.0")
+    implementation("org.scala-lang:scala-library:${scalaVersion}")
+    implementation("ch.qos.logback:logback-core:1.2.3")
+    implementation("ch.qos.logback:logback-classic:1.2.3")
+    implementation("ch.qos.logback:logback-access:1.2.3")
+    implementation("ch.qos.logback.contrib:logback-json-classic:0.1.5")
+    implementation("ch.qos.logback.contrib:logback-jackson:0.1.5")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.12.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.1")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.12.1")
+    implementation("net.logstash.logback:logstash-logback-encoder:4.9")
+    implementation("org.slf4j:slf4j-api:1.7.18")
+    implementation("com.sun.mail:javax.mail:1.6.2")
+    implementation ("net.lingala.zip4j:zip4j:2.9.0")
+    implementation 'org.json:json:20220320'
+    implementation 'ant:ant-junit:1.6.5'
+
+    testImplementation 'io.rest-assured:rest-assured:4.2.0'
+    testImplementation("junit:junit:4.13.1")
+    testImplementation("com.epam.reportportal:logger-java-logback:5.0.1")
+    testImplementation("com.intuit.karate:karate-mock-servlet:${karateVersion}")
+    testImplementation("com.intuit.karate:karate-junit5:${karateVersion}")
+    testImplementation("com.intuit.karate:karate-gatling:${karateVersion}")
+    testImplementation 'net.masterthought:cucumber-reporting:' + masterThoughtVersion
+    antJUnit 'org.apache.ant:ant-junit:1.9.7'
+
+    gatling("org.scala-lang:scala-library:${scalaVersion}")
+    gatling("io.gatling:gatling-app:${gatlingVersion}")
+    gatling("io.gatling.highcharts:gatling-charts-highcharts:${gatlingVersion}")
+    gatling("com.intuit.karate:karate-gatling:${karateVersion}")
+
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDirs = ['src/test/resources', 'src/test/java', 'src/test/scala']
+
+        }
+    }
+}
+
+test {
+    if (!project.gradle.startParameter.taskNames.contains('gatlingRun')) {
+        gradle.startParameter.excludedTaskNames << ':compileTestScala'
+    }
+
+    useJUnitPlatform()
+
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat = "full"
+        events "passed", "skipped", "failed"
+    }
+
+    systemProperties = System.properties
+    systemProperty "karate.options", System.properties.getProperty("options")
+    systemProperty "karate.env", System.properties.getProperty("env")
+
+    outputs.upToDateWhen { false }
+
+    finalizedBy("mergeJUnitReports")
+}
+
+task mergeJUnitReports(type: Test) {
+    ext {
+        resultsDir = file("$rootDir/target/xmlReport")
+        targetDir = file("$rootDir/target/xmlReport")
+    }
+
+    doLast {
+        ant.taskdef(name: 'junitreport',
+                classname: 'org.apache.tools.ant.taskdefs.optional.junit.XMLResultAggregator',
+                classpath: configurations.antJUnit.asPath)
+
+        ant.junitreport(todir: resultsDir) {
+            fileset(dir: resultsDir, includes: '*.xml')
+            report(todir: targetDir, format: 'frames')
+        }
+    }
+}
+
+task gatlingRun(type: JavaExec) {
+    dependsOn testClasses
+
+    description = 'Run Gatling Tests'
+
+    new File("${buildDir}/reports/gatling").mkdirs()
+
+    classpath = sourceSets.test.runtimeClasspath
+
+    main = "io.gatling.app.Gatling"
+    args = [
+            '-s', "${System.properties.getProperty('simulation')}",
+            '-rf', "${buildDir}/reports/gatling"
+    ]
+
+    systemProperties System.properties
+}
+
+task gatlingReport(type: JavaExec) {
+    dependsOn testClasses
+
+    description = 'Run Gatling Report'
+
+    classpath = sourceSets.test.runtimeClasspath
+
+    main = "io.gatling.app.Gatling"
+    args = [
+            '-ro', "${System.properties.getProperty('simulationFolder')}"
+    ]
+
+    systemProperties System.properties
+}
+
+task karateExecute(type: JavaExec) {
+    classpath = sourceSets.test.runtimeClasspath
+    main = System.properties.getProperty('mainClass')
+}
+
+task availEnv(type: Test) {
+    systemProperties System.getProperties().subMap(['env', 'options'])
+}
+
+compileScala.targetCompatibility = 1.8
+ScalaCompileOptions.metaClass.useAnt = false

@@ -1,0 +1,13 @@
+{
+  "consultant_type":"GP",
+  "category_display_name": "Other",
+  "member_id": "",
+  "appointment_reason": "Karate test appointment",
+  "consultation_type":"video",
+  "preferred_date_time":"",
+  "consultant_id" : "",
+  "duration_minutes": 10,
+  "client_compatible_flows": [
+    "CHECK_IN"
+  ]
+}

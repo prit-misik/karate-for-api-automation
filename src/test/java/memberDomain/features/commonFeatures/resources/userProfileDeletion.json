@@ -1,0 +1,21 @@
+{
+  "id": "8ca83859-f0d0-4fed-838b-c79d25fc064e",
+  "first_name": "DeleteProfile",
+  "last_name": "Test",
+  "gender": "male",
+  "sex_at_birth": "male",
+  "date_of_birth": "1990-01-31",
+  "email": "deleteProfileTest@example.org",
+  "address_first_line": "Sloane Avenue 60.",
+  "address_second_line": "Magic/Street 12-A",
+  "address_third_line": "South-Kensington",
+  "address_fourth_line": "South-Kensington 4th Line",
+  "address_fifth_line": "South-Kensington 5th Line",
+  "post_code": "SW3 3DD",
+  "state": "West midlands",
+  "phone_country_code": "+44",
+  "phone_number": "7969696960",
+  "avatar_image_path": "https://images.com/joana22.jpg",
+  "previous_names": "Will Peter, William Petter",
+  "national_id": 1234567891234568
+}
